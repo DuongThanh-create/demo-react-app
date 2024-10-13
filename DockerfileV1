@@ -1,0 +1,20 @@
+# Sử dụng image Node.js chính thức
+FROM node:18.20-bullseye
+
+# Thiết lập thư mục làm việc trong container
+WORKDIR /app
+
+# Copy package.json và package-lock.json (nếu có)
+COPY package.json package-lock.json ./
+
+# Cài đặt dependencies thông qua npm
+RUN npm install
+
+# Copy toàn bộ mã nguồn ứng dụng vào container
+COPY . .
+
+# Expose port 3000 (cổng mà ứng dụng chạy)
+EXPOSE 3000
+
+# Chạy ứng dụng với npm start
+CMD ["npm", "start"]
